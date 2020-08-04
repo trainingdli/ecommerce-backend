@@ -74,7 +74,8 @@ mongoose.connect(mongoDB, { useNewUrlParser: false }, (error, response) => {
     }
 });
 
-const portNo = process.env.port || config.portNo
+// const portNo = process.env.port || config.portNo
+const portNo = config.portNo
 app.listen(portNo, function() {
     console.log(`EKart is runing on ${config.portNo}`)
 })
