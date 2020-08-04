@@ -1,0 +1,14 @@
+Validations in Mongoose
+1. Built-in rules
+2. Custom rules
+
+
+
+Built-in Validation Rules:
+
+1. Required: validator checks for if a property is not empty.
+2. Numbers: min and max validators
+3. Strings: enum, minlength, maxlength
+
+
+Category: ['Mobiles', 'Washing Machines']
