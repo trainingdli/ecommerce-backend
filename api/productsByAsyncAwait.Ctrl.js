@@ -4,6 +4,7 @@ const productService = require('../services/product.svc');
 const reviewService = require('../services/review.svc');
 const getErrors = require('../services/common.svc');
 const config = require('../config');
+const { json } = require('body-parser');
 
 const ProductCtrl = {
     getProductById: async(req, res) => {
@@ -11,10 +12,14 @@ const ProductCtrl = {
             const id = req.query.id;
             const product = await productService.getById(id);
             if (product) {
+                const avgRating = await reviewService.getAvgRating(id);
+                const countByRatings = await reviewService.getCountByRating(id);
                 const reviews = await reviewService.getReviews(id);
                 const jsonProduct = product.toJSON();
                 jsonProduct.imgSrc = `${config.serverUrl}/${jsonProduct.imgSrc}`;
                 jsonProduct.reviews = reviews;
+                jsonProduct.averageRating = avgRating[0].avgRating;
+                jsonProduct.countByRatings = countByRatings;
                 res.json({data: jsonProduct})
                 res.status(200);
             } else {
@@ -22,6 +27,7 @@ const ProductCtrl = {
                 res.status(404);
             }
         } catch(error) {
+            console.log(error);
             res.send(error);
             res.status(500);
         }

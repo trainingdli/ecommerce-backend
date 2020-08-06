@@ -48,10 +48,10 @@ class ProductCtrl {
             .exec()
             .then((products) => {
                 if (products) {
-                    res.json({products});
+                    res.json(products);
                     res.status(200);
                 } else {
-                    res.json({products});
+                    res.json(products);
                     res.status(404);  
                 }
             }).catch((error) => {

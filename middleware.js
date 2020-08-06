@@ -34,7 +34,6 @@ const basicAuth = (req, res, next) => {
 }
 
 const jwtAuthentication = async (req, res, next) => {
-    console.log(req.headers);
     if (req.headers['authorization']) {
         try {
             const jwtToken  = req.headers['authorization'];

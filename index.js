@@ -27,9 +27,9 @@ var corsOptions = {
 };
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.static('uploads'));
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
     res.send('Welcome to dl ecommerce backend app');
