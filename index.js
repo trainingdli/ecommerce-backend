@@ -25,7 +25,7 @@ var corsOptions = {
     methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE'],
     allowedHeaders: 'accept, content-type, authorization'
 };
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('uploads'));
@@ -34,6 +34,7 @@ app.use(cors(corsOptions));
 app.get('/', (req, res) => {
     res.send('Welcome to dl ecommerce backend app');
 });
+app.use(cors(corsOptions));
 app.use('/', defaultRouter);
 app.use('/user', userRouter);
 app.use('/', productRouter);
@@ -66,7 +67,7 @@ app.use('/review', reviewRouter);
 
 // var mongoDB = 'mongodb://localhost:27017/ecommerce';
 var mongoDB = 'mongodb://admin:admin123@ds039860.mlab.com:39860/ecommerce';
-mongoose.connect(mongoDB, { useNewUrlParser: true }, (error, response) => {
+mongoose.connect(mongoDB, { useNewUrlParser: false }, (error, response) => {
     if (error) {
         console.log(error);
     } else {    
@@ -74,7 +75,8 @@ mongoose.connect(mongoDB, { useNewUrlParser: true }, (error, response) => {
     }
 });
 
-const portNo = process.env.port || config.portNo
+// const portNo = process.env.port || config.portNo
+const portNo = config.portNo
 app.listen(portNo, function() {
     console.log(`EKart is runing on ${config.portNo}`)
 })

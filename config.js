@@ -1,5 +1,5 @@
 const config = Object.freeze({
-    portNo: 3000,
+    portNo: 4000,
     username: 'admin',
     password: 'admin123',
     secret: 'Digitallync',
